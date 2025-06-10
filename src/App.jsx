@@ -2,6 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Feed from "./components/Feed/Feed";
+import VideoFeed from "./components/Feed/VideoFeed";
+import ChannelFeed from "./components/Feed/ChannelFeed";
 
 import { useState } from "react";
 
@@ -30,10 +32,12 @@ function App() {
         <Header />
         <div className="flex">
           <Sidebar category={category} setCategory={setCategory}></Sidebar>
-          <Feed category={category} />
         </div>
 
         <Routes>
+          <Route path="/" element={<Feed category={category} />} />
+          <Route path="/video/:id" element={<VideoFeed />} />
+          <Route path="/channel/:id" element={<ChannelFeed />} />
           <Route path="/" element={<Home />}></Route>
           <Route path="/video/:id" element={<Video />}></Route>
           <Route path="/channel/:id" element={<Channel />}></Route>

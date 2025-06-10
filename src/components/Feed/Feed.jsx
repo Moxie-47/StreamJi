@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchFromAPI } from "../../utils/fetchAPI";
+import VideoCard from "../Videos/VideoCard";
 
 function Feed({ category }) {
   const [videos, setVideos] = useState(null);
@@ -18,16 +19,11 @@ function Feed({ category }) {
         {!videos ? (
           <div className="text-gray-500">Loading...</div>
         ) : (
-          videos.map((video) => (
-            <div key={video.id.videoId || video.id.channelId}>
-              <img
-                src={video.snippet.thumbnails.high.url}
-                alt={video.snippet.title}
-                className="rounded-lg"
-              />
-              <p className="mt-2 font-semibold text-sm">{video.snippet.title}</p>
-            </div>
-          ))
+          videos.map((video) =>
+            video.id.videoId ? (
+              <VideoCard video={video} key={video.id.videoId} />
+            ) : null
+          )
         )}
       </div>
     </main>
