@@ -11,7 +11,7 @@ const options = {
     "X-RapidAPI-Host": "youtube-v311.p.rapidapi.com",
   },
 };
-console.log(`Key : ${import.meta.env.VITE_RAPID_API_KEY}`)
+console.log(import.meta.env.VITE_RAPID_API_KEY)
 
 export const fetchFromAPI = async (url) => {
   const { data } = await axios.get(`${BASE_URL}/${url}`, options);
