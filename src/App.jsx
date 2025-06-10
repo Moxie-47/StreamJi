@@ -8,6 +8,7 @@ import SearchFeed from "./components/Feed/SearchFeed";
 
 import { useState } from "react";
 
+
 function Home() {
   return <div className="text-2xl font-bold">Home page</div>
 }
