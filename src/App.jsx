@@ -4,6 +4,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Feed from "./components/Feed/Feed";
 import VideoFeed from "./components/Feed/VideoFeed";
 import ChannelFeed from "./components/Feed/ChannelFeed";
+import SearchFeed from "./components/Feed/SearchFeed";
 
 import { useState } from "react";
 
@@ -15,13 +16,7 @@ function Video() {
   return <div className="text-2xl font-bold">Video page</div>
 }
 
-function Channel() {
-  return <div className="text-2xl font-bold">Channel page</div>
-}
 
-function Search() {
-  return <div className="text-2xl font-bold">Search Page</div>
-}
 
 function App() {
   const [category, setCategory] = useState("New")
@@ -31,18 +26,16 @@ function App() {
       <BrowserRouter>
         <Header />
         <div className="flex">
-          <Sidebar category={category} setCategory={setCategory}></Sidebar>
+          <Sidebar category={category} setCategory={setCategory} />
+          <div className="flex-1">
+            <Routes>
+              <Route path="/" element={<Feed category={category} />} />
+              <Route path="/video/:id" element={<VideoFeed />} />
+              <Route path="/channel/:id" element={<ChannelFeed />} />
+              <Route path="/search/:searchTerm" element={<SearchFeed />} />
+            </Routes>
+          </div>
         </div>
-
-        <Routes>
-          <Route path="/" element={<Feed category={category} />} />
-          <Route path="/video/:id" element={<VideoFeed />} />
-          <Route path="/channel/:id" element={<ChannelFeed />} />
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/video/:id" element={<Video />}></Route>
-          <Route path="/channel/:id" element={<Channel />}></Route>
-          <Route path="/search/:searchTerm" element={<Search />}></Route>
-        </Routes>
       </BrowserRouter>
     </>
   )
